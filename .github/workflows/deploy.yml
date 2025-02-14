@@ -39,7 +39,7 @@ jobs:
               git clone https://github.com/goodddybag/fastapi-book-project
             fi
             cd fastapi-book-project/
-            git pull
+            git pull origin main
             docker-compose up -d --build
 
             # Wait for containers to start
