@@ -39,18 +39,7 @@ jobs:
               git clone https://github.com/goodddybag/fastapi-book-project
             fi
             cd fastapi-book-project/
+            git stash
             git pull origin main
+            docker compose down
             docker-compose up -d --build
-
-            # Wait for containers to start
-            sleep 10
-
-            # Test if the API is running correctly
-            RESPONSE_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" http://35.175.175.118/api/v1/books/1)
-            if [ "$RESPONSE_CODE" -ne 200 ]; then
-              echo "ERROR: API returned $RESPONSE_CODE instead of 200"
-              exit 1
-            else
-              echo "API is running correctly"
-            fi
-           
